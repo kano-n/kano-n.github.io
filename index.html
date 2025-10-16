@@ -142,15 +142,117 @@
           <div style="margin-top:18px">
             <h3 style="margin:0 0 8px 0">コリンの小さなギャラリー</h3>
             <div class="gallery">
-              <div class="tile"> <img src="colin2.jpg" alt=＂いたずらコリン＂style="width:100%;border-radius:10px;">
-      <p style="text-align:center;margin-top:6px;">いたずらコリン</p></div>
-              <div class="tile"><img src="colin3.jpg" alt="おやすみコリン"style="width:100%;border-radius:10px;">
-      <p style="text-align:center;margin-top:6px;">おやすみコリン</p></div>
-              <div class="tile"> <img src="colin4.jpg" alt=＂お利口コリン"style="width:100%;border-radius:10px;">
-      <p style="text-align:center;margin-top:6px;">お利口コリン</p>
+              <div class="tile"> <img src="colin2.jpg" alt=＂いたずらコリン＂class="colin-photo" onclick="openModal(this)">
+      <p>いたずらコリン</p></div>
+              <div class="tile"><img src="colin3.jpg" alt="おやすみコリン"class="colin-photo" onclick="openModal(this)">
+      <p>おやすみコリン</p></div>
+              <div class="tile"> <img src="colin4.jpg" alt=＂お利口コリン" class="colin-photo" onclick="openModal(this)">
+      <p>お利口コリン</p>
             </div>
           </div>
         </div>
+        <div id="modal" class="modal" onclick="closeModal()">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modal-img">
+  <div id="caption"></div>
+</div>
+
+<style>
+/* ギャラリー全体の配置 */
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* 各タイル */
+.tile {
+  width: 110px; /* 小さめサイズに変更 */
+  text-align: center;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 6px;
+  cursor: pointer;
+}
+
+/* サムネイル画像 */
+.colin-photo {
+  width: 100%;
+  height: 90px; /* 高さも少し小さく */
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.colin-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+/* キャプション */
+.tile p {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* モーダルのスタイル */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* 拡大写真 */
+.modal-content {
+  display: block;
+  margin: auto;
+  max-width: 80%;
+  border-radius: 10px;
+}
+
+/* キャプション（モーダル下） */
+#caption {
+  margin: 12px auto;
+  text-align: center;
+  color: #fff;
+}
+
+/* 閉じるボタン */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
+
+<script>
+function openModal(img) {
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("modal-img");
+  const captionText = document.getElementById("caption");
+  modal.style.display = "block";
+  modalImg.src = img.src;
+  captionText.innerHTML = img.alt;
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+</script>  
 
         <div class="card" style="margin-top:16px">
           <h3 style="margin-top:0">しつけメモ</h3>
@@ -235,6 +337,7 @@
   </script>
 </body>
 </html>
+
 
 
 

@@ -11,24 +11,248 @@
 
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <title lang="en">Colin kingdom</title>
- </head>
- <body>
-  <article>
-   <h1 lang="en"> Colin kingdom</h1>
-   <p>犬のコリンは、凄く<strong>わがまま</strong>なので、ご飯はたいてい1，2回食べてすぐ飽きます。
-  コリンちゃんはかわいいので、人間はコリンちゃん用の服やおもちゃ、おやつを大量に買い与えてしまいます。
-  いたずらっ子のコリンは攻撃がガチなので<strong>要注意!!</strong>顔はかわいいですが、心は悪魔です。
-   飼い主であるうちの祖母にはあまり甘えてきませんが、中年男性にはデレデレです。</p>
-  </article>
- </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Colin Kingdom 🐾</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#FFF9FB;
+      --card:#fff;
+      --accent:#FFB6C1;
+      --accent-2:#FFD9E2;
+      --muted:#6B6B6B;
+      --shadow: 0 8px 24px rgba(235,128,172,0.12);
+      --glass: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Nunito', system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+      background: radial-gradient(circle at 10% 10%, #FFF0F6 0%, var(--bg) 35%);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px 20px;
+    }
+    .wrap{max-width:980px;margin:0 auto}
 
+    header{
+      display:flex;align-items:center;gap:18px;margin-bottom:26px;
+    }
+    .logo{
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      width:84px;height:84px;border-radius:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);
+      transform:rotate(-6deg);
+    }
+    .logo svg{width:64px;height:64px;filter:drop-shadow(0 6px 15px rgba(0,0,0,0.08));}
+    h1{margin:0;font-size:34px;font-weight:800;font-family:Pacifico, 'Nunito', cursive;color:#333}
+    p.lead{margin:6px 0 0;color:var(--muted)}
+
+    main{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+
+    .card{
+      background:var(--card);border-radius:16px;padding:20px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03);
+    }
+
+    .colin-art{display:flex;gap:16px;align-items:center}
+    .colin-illustration{width:220px;height:220px;flex-shrink:0;background:linear-gradient(180deg,#fff,#FFF7FB);border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 -10px 30px rgba(255,200,220,0.2)}
+
+    /* cute paw animation */
+    .paw{animation:wag 2s ease-in-out infinite}
+    @keyframes wag{
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-8px) rotate(6deg)}
+      100%{transform:translateY(0)}
+    }
+
+    .description{line-height:1.9;color:#333}
+    .badge{display:inline-block;background:linear-gradient(90deg,#FFDFE8,#FFF0F6);padding:6px 10px;border-radius:999px;font-weight:700;margin-top:10px}
+
+    aside .card{position:sticky;top:28px}
+
+    .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .meta button{background:var(--accent);border:none;padding:8px 12px;border-radius:10px;color:#fff;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(255,182,192,0.18)}
+
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .tile{background:linear-gradient(180deg,#fff,#FFF7FA);border-radius:10px;padding:12px;display:flex;align-items:center;justify-content:center;min-height:80px}
+
+    .footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (max-width:900px){main{grid-template-columns:1fr}aside{order:2}}
+
+    /* playful cursor */
+    .paw-cursor{cursor:none}
+    .paw-cursor::after{content:'🐾';position:fixed;pointer-events:none;font-size:20px;transform:translate(-50%,-50%);transition:transform 0.06s linear}
+
+    /* little confetti when clap */
+    .confetti{position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none}
+  </style>
+</head>
+<body class="paw-cursor">
+  <div class="wrap">
+    <header>
+      <div class="logo" aria-hidden>
+        <!-- simple dog SVG -->
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="64" height="64" rx="12" fill="white" />
+          <g transform="translate(8 8)">
+            <ellipse cx="24" cy="24" rx="16" ry="14" fill="#FFDDE6" />
+            <circle cx="18" cy="18" r="3" fill="#6B3A2A" />
+            <circle cx="30" cy="18" r="3" fill="#6B3A2A" />
+            <path d="M14 30c4 6 14 6 18 0" stroke="#6B3A2A" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="6" cy="6" r="5" fill="#FFB6C1" opacity="0.9"/>
+            <circle cx="36" cy="6" r="5" fill="#FFB6C1" opacity="0.9"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <h1>Colin Kingdom</h1>
+        <p class="lead">ちょっぴりわがまま、でも愛されるコリンちゃんの公式サイト</p>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="card">
+          <div class="colin-art">
+            <div class="colin-illustration paw" id="colinIllustration" aria-hidden>
+              <!-- bigger SVG playful dog -->
+              <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#FFF6FA"/></linearGradient>
+                </defs>
+                <rect width="200" height="200" rx="24" fill="url(#g)"/>
+                <g transform="translate(18,24)">
+                  <ellipse cx="82" cy="80" rx="54" ry="46" fill="#FFDDE6"/>
+                  <circle cx="58" cy="66" r="6" fill="#5B3A2A"/>
+                  <circle cx="106" cy="66" r="6" fill="#5B3A2A"/>
+                  <path d="M60 98c10 8 28 8 38 0" stroke="#5B3A2A" stroke-width="4" stroke-linecap="round" fill="none"/>
+                  <ellipse cx="24" cy="36" rx="18" ry="14" fill="#FFB6C1"/>
+                  <ellipse cx="140" cy="36" rx="18" ry="14" fill="#FFB6C1"/>
+                </g>
+              </svg>
+            </div>
+            <div style="flex:1">
+              <div class="badge">Official: Colin kingdom</div>
+              <h2 style="margin-top:12px;margin-bottom:8px">コリンちゃんについて</h2>
+              <div class="description">
+                <p>犬のコリンは、凄くわがままなので、ご飯はたいてい1, 2回食べてすぐ飽きます。コリンちゃんはかわいいので、人間はコリンちゃん用の服やおもちゃ、おやつを大量に買い与えてしまいます。いたずらっ子のコリンは攻撃がガチなので要注意!!顔はかわいいですが、心は悪魔です。飼い主であるうちの祖母にはあまり甘えてきませんが、中年男性にはデレデレです。</p>
+              </div>
+
+              <div class="meta">
+                <button id="clapBtn">いいね！🐾</button>
+                <button id="shopBtn">グッズを見る</button>
+                <button id="soundBtn">おやつの音🔔</button>
+              </div>
+
+            </div>
+          </div>
+
+          <div style="margin-top:18px">
+            <h3 style="margin:0 0 8px 0">コリンの小さなギャラリー</h3>
+            <div class="gallery">
+              <div class="tile">おすわりコリン</div>
+              <div class="tile">寝ぼすけコリン</div>
+              <div class="tile">おやつ狙いコリン</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3 style="margin-top:0">しつけメモ</h3>
+          <ul>
+            <li>ご飯は少量ずつ、飽きやすいので種類をローテーション。</li>
+            <li>いたずら対策におもちゃを数種類用意。</li>
+            <li>中年男性に甘えるので、お客様対応に注意。</li>
+          </ul>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h3 style="margin-top:0">コリンのまめちしき</h3>
+          <p class="muted" style="color:var(--muted)">わがままで甘えんぼ。でも家族はメロメロ。</p>
+
+          <div style="margin-top:12px">
+            <strong>年齢：</strong>3歳（推定）<br>
+            <strong>好きなもの：</strong>おやつ・昼寝・中年男性
+          </div>
+
+          <div style="margin-top:12px">
+            <h4 style="margin:4px 0">お店コーナー</h4>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.04);background:linear-gradient(90deg,#FFF7FA,#FFF);">洋服</button>
+              <button style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.04);background:linear-gradient(90deg,#FFF7FA,#FFF);">おやつ</button>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <h4 style="margin:4px 0">コリンのルール</h4>
+            <ol style="padding-left:18px">
+              <li>甘やかしすぎない</li>
+              <li>毎日1回だけ特別なおやつ</li>
+              <li>いたずらの後はぎゅっと抱きしめる</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;text-align:center">
+          <div style="font-size:20px;font-weight:800">コリンの声を聴く</div>
+          <div style="margin-top:8px;color:var(--muted)">おやつボタンでおねだり音が鳴ります</div>
+        </div>
+      </aside>
+    </main>
+
+    <div class="footer">© Colin Kingdom · みんなでコリンを愛でよう 🐶</div>
+  </div>
+
+  <canvas class="confetti" id="confettiCanvas"></canvas>
+
+  <audio id="treatSound">
+    <source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAgD4AAAB9AAACABAAZGF0YQAAAAA=" type="audio/wav">
+  </audio>
+
+  <script>
+    // custom paw cursor follow
+    const body = document.body;
+    const pawEl = document.createElement('div');
+    pawEl.style.position='fixed';pawEl.style.pointerEvents='none';pawEl.style.zIndex=9999;pawEl.style.fontSize='22px';
+    pawEl.textContent='🐾';document.body.appendChild(pawEl);
+    window.addEventListener('mousemove',e=>{pawEl.style.left=(e.clientX)+'px';pawEl.style.top=(e.clientY)+'px'});
+
+    // simple clap/confetti
+    const clap = document.getElementById('clapBtn');
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const ctx = confettiCanvas.getContext('2d');
+    function resize(){confettiCanvas.width=innerWidth;confettiCanvas.height=innerHeight}
+    window.addEventListener('resize',resize);resize();
+
+    function spawnConfetti(){
+      const pieces=[];
+      for(let i=0;i<80;i++) pieces.push({x:Math.random()*innerWidth,y:Math.random()*-innerHeight,speed:1+Math.random()*6,w:6+Math.random()*8,color:['#FFB6C1','#FFD9E2','#FFD1E6','#FFC0CB'][Math.floor(Math.random()*4)]});
+      let t=0;function step(){t++;ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of pieces){p.y+=p.speed;p.x+=Math.sin(t/10+p.x/200)*2;ctx.fillStyle=p.color;ctx.fillRect(p.x,p.y,p.w,p.w)}if(t<180)requestAnimationFrame(step);else ctx.clearRect(0,0,innerWidth,innerHeight)}step();
+    }
+
+    clap.addEventListener('click',()=>{
+      spawnConfetti();
+    });
+
+    // sound button
+    const soundBtn = document.getElementById('soundBtn');
+    const treat = document.getElementById('treatSound');
+    soundBtn.addEventListener('click',()=>{ try{ treat.currentTime=0; treat.play(); }catch(e){} });
+
+    // shop button example (just an alert here)
+    document.getElementById('shopBtn').addEventListener('click',()=>{ alert('グッズページはまだ準備中！'); });
+  </script>
+</body>
 </html>
+
 
 
 
